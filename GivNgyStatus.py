@@ -12,7 +12,7 @@ spi = SPI(1, baudrate=20000000, polarity=0, phase=0,
           sck=Pin(10), mosi=Pin(11), miso=None)
 tft=TFT(spi,16,17,18)
 tft.initr()
-tft.rgb(True)
+tft.rgb(False)
 tft.fill(TFT.BLACK)
 
 # Connect to WLAN
@@ -34,15 +34,16 @@ while True:
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }
-
+    print ('Making API call..')
     response = urequests.request('GET',url,headers=headers)
     data = response.json()
     batt_lvl = data['data']['battery']['percent']
     print(batt_lvl)
 
     tft.fill(TFT.BLACK) #'clear' the screen before updates
-    tft.text((0, 0), "BATTERY", TFT.GREEN, terminalfont, 2, nowrap=True)
-    tft.text((0, 20), str(batt_lvl)+"%", TFT.PURPLE, terminalfont, 4)
+    tft.text((0, 0), secrets.INVERTER, TFT.BLUE, terminalfont, 2, nowrap=True)
+    tft.text((0, 20), "BATTERY", TFT.GREEN, terminalfont, 2, nowrap=True)
+    tft.text((0, 40), str(batt_lvl)+"%", TFT.PURPLE, terminalfont, 4)
     time.sleep(60)
  
 
