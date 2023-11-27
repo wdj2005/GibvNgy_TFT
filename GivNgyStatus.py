@@ -38,7 +38,7 @@ while True:
     batt_lvl = data['data']['battery']['percent']
     print(batt_lvl)
 
-
+    tft.fill(TFT.BLACK) #'clear' the screen before updates
     tft.text((0, 30), "BATTERY", TFT.GREEN, sysfont, 3, nowrap=True)
     tft.text((0, 60), str(batt_lvl), TFT.PURPLE, sysfont, 10)
     time.sleep(60)
