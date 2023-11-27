@@ -48,14 +48,14 @@ while True:
     now=rtc.datetime() # get date and time
     print(now)
     print("{:02d}-{:02d}-{:04d} {:02d}:{:02d}:{:02d}".format(now[2],now[1],now[0],now[4],now[5],now[6]))
-   
+    time_str = "{:02d}:{:02d}".format(now[4], now[5])
     
 
     tft.fill(TFT.BLACK) #'clear' the screen before updates
     tft.text((0, 0), secrets.INVERTER, TFT.BLUE, terminalfont, 2, nowrap=True)
     tft.text((0, 20), "BATTERY", TFT.GREEN, terminalfont, 2, nowrap=True)
     tft.text((0, 40), str(batt_lvl)+"%", TFT.PURPLE, terminalfont, 4)
-    tft.text((0,100), str(now[4])+":"+str(now[5]), TFT.YELLOW, terminalfont, 2, nowrap=True)
+    tft.text((0,100), time_str, TFT.YELLOW, terminalfont, 2, nowrap=True)
     time.sleep(60)
  
 
