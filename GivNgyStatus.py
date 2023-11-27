@@ -1,5 +1,7 @@
 from ST7735 import TFT
 from sysfont import sysfont
+from terminalfont import terminalfont
+from seriffont import seriffont
 from machine import SPI,Pin
 import time
 import math
@@ -23,6 +25,8 @@ while not wlan.isconnected():
     pass
 print('Connected to WLAN')
 
+time.sleep(3)
+
 while True:
 
     # Make GivEnergy API call to get Inverter data
@@ -39,7 +43,8 @@ while True:
     print(batt_lvl)
 
     tft.fill(TFT.BLACK) #'clear' the screen before updates
-    tft.text((0, 30), "BATTERY", TFT.GREEN, sysfont, 3, nowrap=True)
-    tft.text((0, 60), str(batt_lvl), TFT.PURPLE, sysfont, 10)
+    tft.text((0, 0), "BATTERY", TFT.GREEN, terminalfont, 2, nowrap=True)
+    tft.text((0, 20), str(batt_lvl)+"%", TFT.PURPLE, terminalfont, 4)
     time.sleep(60)
  
+
